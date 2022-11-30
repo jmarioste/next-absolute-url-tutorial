@@ -19,9 +19,10 @@ export default SSRPage;
 
 export const getServerSideProps: GetServerSideProps<Props> = async (ctx) => {
   console.log("host", ctx.req.headers.host);
+  const absoluteUrl = `${getProtocol()}${ctx.req.headers.host}`;
   return {
     props: {
-      absoluteUrl: `${getProtocol()}${ctx.req.headers.host}`,
+      absoluteUrl,
     },
   };
 };
