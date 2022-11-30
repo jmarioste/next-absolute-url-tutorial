@@ -1,5 +1,5 @@
 import { GetServerSideProps, NextPage } from "next";
-import { getAbsoluteUrl } from "../utils/vercel-utils";
+import { getAbsoluteUrl, getProtocol } from "../utils/vercel-utils";
 
 type Props = {
   absoluteUrl: string;
@@ -18,9 +18,10 @@ const SSRPage: NextPage<Props> = ({ absoluteUrl }) => {
 export default SSRPage;
 
 export const getServerSideProps: GetServerSideProps<Props> = async (ctx) => {
+  console.log("host", ctx.req.headers.host);
   return {
     props: {
-      absoluteUrl: getAbsoluteUrl() ?? "",
+      absoluteUrl: `${getProtocol()}${ctx.req.headers.host}`,
     },
   };
 };

@@ -4,18 +4,13 @@ import { getAbsoluteUrl } from "../utils/vercel-utils";
 
 type Props = {
   absoluteUrl: string;
-  apiResult: any;
 };
-const StaticPage: NextPage<Props> = ({ absoluteUrl, apiResult }) => {
+const StaticPage: NextPage<Props> = ({ absoluteUrl }) => {
   const fromInsideComponent = getAbsoluteUrl();
   return (
     <div>
       <div>getStaticProps Absolute URL: {absoluteUrl}</div>
       <div>fromInsideComponent Absolute URL: {fromInsideComponent}</div>
-      <div>
-        api Result
-        <pre>{JSON.stringify(apiResult, null, 4)}</pre>
-      </div>
     </div>
   );
 };
@@ -23,12 +18,9 @@ const StaticPage: NextPage<Props> = ({ absoluteUrl, apiResult }) => {
 export default StaticPage;
 
 export const getStaticProps: GetStaticProps<Props> = async (ctx) => {
-  const response = await fetch(new URL("/api/hello", getAbsoluteUrl()));
-  const apiResult = await response.json();
   return {
     props: {
       absoluteUrl: getAbsoluteUrl() ?? "",
-      apiResult,
     },
   };
 };
