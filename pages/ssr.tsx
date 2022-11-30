@@ -13,7 +13,7 @@ const SSRPage: NextPage<Props> = ({ absoluteUrl }) => {
       <div>getServerSideProps Absolute URL: {absoluteUrl}</div>
       <div>fromInsideComponent Absolute URL: {fromInsideComponent}</div>
       <nav>
-        <Link href="/home">Home</Link>
+        <Link href="/">Home</Link>
         <Link href="/ssr">SSR</Link>
         <Link href="/static">Static</Link>
         <Link href="/api/hello">api/hello</Link>
